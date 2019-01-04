@@ -53,8 +53,8 @@ WAV_HEAD* initalize(WAV_HEAD* wav){
     //initialization samplingLate
     wav->fmt.samplingLate = 8000;
 
-    //initialization byte per sec
-    wav->fmt.bps = 8;
+    //initialization bit per sec
+    wav->fmt.bps = wav->fmt.channelSize * 8;
 
     //initialization dataSpeed
     wav->fmt.dataSpeed = wav->fmt.samplingLate * wav->fmt.bps / 8;
