@@ -54,13 +54,13 @@ WAV_HEAD* initalize(WAV_HEAD* wav){
     wav->fmt.samplingLate = 8000;
 
     //initialization bit per sec
-    wav->fmt.bps = wav->fmt.channelSize * 8;
-
-    //initialization dataSpeed
-    wav->fmt.dataSpeed = wav->fmt.samplingLate * wav->fmt.channelSize;
+    wav->fmt.bps =  16;
 
     //initialization blockSize
-    wav->fmt.blockSize = wav->fmt.channelSize * wav->fmt.channelSize;
+    wav->fmt.blockSize = wav->fmt.channelSize * wav->fmt.bps / 2;
+
+    //initialization dataSpeed
+    wav->fmt.dataSpeed = wav->fmt.samplingLate * wav->fmt.blockSize;
 
     //initialization DataChunck
     wav->DATA_CHUNK[0] = 'd';

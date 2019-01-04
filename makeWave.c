@@ -16,7 +16,7 @@ int main(){
     short* wave;
     int strsize;
     char continueflug = 'Y';
-    int needbyte = 0;
+    int needsize = 0;
     
     do{
         initalize(&wav);
@@ -30,26 +30,26 @@ int main(){
         strsize = printf(filestring, hz, s);
         printf("\n");
 
-        needbyte = (int)(s * 8000);
+        needsize = (int)(s * 8000);
 
         if ((filename = (char*)calloc(strsize + 1, sizeof(char))) == NULL) exit(1);
         sprintf(filename, filestring, hz, s);
         if ((fp = fopen(filename, "w")) == NULL) exit(1);
 
-        if ((wave = (short*)calloc(needbyte, sizeof(short))) == NULL) exit(1);
+        if ((wave = (short*)calloc(needsize, sizeof(short))) == NULL) exit(1);
 
-        for (time = 0; time < needbyte; time++) {
+        for (time = 0; time < needsize; time++) {
             wave[time] = (short)(15000 * sin(2.0 * PI*time / (8000 / hz)));
         }
 
-        wav.waveSize = needbyte;
+        wav.waveSize = needsize * 2;
         finalize(&wav);
 
         if(fwrite(&wav,sizeof(WAV_HEAD),1,fp) < 1){
             printf("ヘッダーの書き出しに失敗しました");
             exit(1);
         }
-        if(fwrite(wave,sizeof(short),needbyte,fp) < needbyte){
+        if(fwrite(wave,sizeof(short),needsize,fp) < needsize){
             printf("波形情報の書き出しに失敗しました");
             exit(1);
         }
