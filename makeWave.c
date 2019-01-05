@@ -47,11 +47,11 @@ int main(){
         finalize(&wav);
 
         if(fwrite(&wav,sizeof(WAV_HEAD),1,fp) < 1){
-            printf("ヘッダーの書き出しに失敗しました");
+            printf("ヘッダーの書き出しに失敗しました\n");
             exit(1);
         }
         if(fwrite(wave,sizeof(short),needsize,fp) < needsize){
-            printf("波形情報の書き出しに失敗しました");
+            printf("波形情報の書き出しに失敗しました\n");
             exit(1);
         }
 
