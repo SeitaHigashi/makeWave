@@ -14,7 +14,7 @@ typedef struct {
     int fileSize;
     char WAVE_HEAD[4];
     char defineFormat[4];
-    char fmtSize;
+    int fmtSize;
     FMT fmt;
     char DATA_CHUNK[4];
     int waveSize;
